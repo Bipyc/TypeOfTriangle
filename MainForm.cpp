@@ -52,6 +52,13 @@ void __fastcall Tform1::inputChange(TObject *Sender)
 	String strValue = edit->Text;
 	if (strValue.Length() > 0 ) {
 		unsigned int value = strValue.ToInt();
+		if (value > 0) {
+			strValue = value;
+			dynamic_cast<TEdit*>(Sender)->Text = strValue;
+		}
+		else {
+            dynamic_cast<TEdit*>(Sender)->Text = "";
+        }
 		triangle.setValue(edit->Tag, value);
 	}
 	else {
@@ -76,9 +83,24 @@ void Tform1::checkTriangle(const Triangle& a)
 		labelResult->Font->Color = clRed;
 		labelResult->Caption = STR_INPUT_3;
 	}
+	else if ( a.getSide1() >= a.getSide2() + a.getSide3() ||
+			a.getSide2() >= a.getSide1() + a.getSide3() ||
+			a.getSide3() >= a.getSide1() + a.getSide2() )
+	{
+		labelResult->Font->Color = RGB(165, 102, 206);
+		labelResult->Caption = STR_NOT_EXIST;
+	}
 	else {
-		labelResult->Font->Color = clBlue;//00A00000; //Color
+		labelResult->Font->Color = RGB(0, 130, 0);
 		labelResult->Caption = a.getType();
-	}	
+	}
 }
 // ƒобавить меню выбора при правым щелчке мышки
+void __fastcall Tform1::N1Click(TObject *Sender)
+{
+	TEdit* edit = dynamic_cast<TEdit*>(Sender);
+	String strValue = edit->Text;
+	dynamic_cast<TEdit*>(Sender)->Text = "1";
+}
+//---------------------------------------------------------------------------
+

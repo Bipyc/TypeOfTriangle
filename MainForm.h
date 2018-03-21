@@ -13,6 +13,7 @@
 //---------------------------------------------------------------------------
 
 #include "Triangle.h"
+#include <Vcl.Menus.hpp>
 
 class Tform1 : public TForm
 {
@@ -25,8 +26,11 @@ __published:	// IDE-managed Components
 	TLabel *labelInput3;
 	TLabel *labelResult;
 	TPanel *Panel1;
+	TPopupMenu *PopupMenu1;
+	TMenuItem *N19999999991;
 	void __fastcall inputKeyPress(TObject *Sender, System::WideChar &Key);
 	void __fastcall inputChange(TObject *Sender);
+	void __fastcall N1Click(TObject *Sender);
 private:
 	Triangle triangle;
     void checkTriangle(const Triangle &a);
